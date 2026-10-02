@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sandy Chang - Senior UX Designer</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  * { font-family: 'Inter', Helvetica, Arial, sans-serif; box-sizing: border-box; margin:0; padding:0; }
+  body { background:#E6ECF2; display:flex; flex-direction:column; align-items:center; padding:24px; gap:24px; }
+  .page { width:860px; background:white; box-shadow:0 8px 40px rgba(0,0,0,0.1); overflow:hidden; display:flex; flex-direction:column; min-height:1123px; /* A4 ratio */ }
+  header { background:#3B9AE1; padding:22px 32px; display:flex; justify-content:space-between; flex-shrink:0; }
+  .header-left h1 { color:white; font-size:38px; font-weight:300; letter-spacing:0.02em; text-transform:uppercase; line-height:0.95; }
+  .header-left p { color:rgba(255,255,255,0.95); font-size:13px; font-weight:500; letter-spacing:0.18em; text-transform:uppercase; margin-top:10px; }
+  .header-right { color:white; font-size:12px; line-height:1.65; text-align:right; }
+  main { padding:24px 32px 24px; flex:1; display:flex; flex-direction:column; }
+  h2 { font-size:17px; font-weight:700; color:#222; }
+  .underline { width:28px; height:3px; background:#3B9AE1; margin:7px 0 10px; }
+  p.body { font-size:12.8px; line-height:1.7; color:#2f2f2f; }
+  .stats { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-top:20px; }
+  .stat { background:#F0F7FF; border-radius:8px; padding:14px 16px; }
+  .stat-num { color:#3B9AE1; font-weight:700; font-size:20px; }
+  .stat-label { font-size:11.5px; color:#5a6470; margin-top:6px; }
+  .card { border:1px solid #CFE2F5; border-radius:10px; padding:18px 20px; margin-top:24px; background:white; }
+  .card-label { font-size:10px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#3B9AE1; }
+  .grid3 { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-top:16px; }
+  .mini-label { font-size:10px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#3B9AE1; margin-bottom:4px; }
+  .mini-title { font-size:12.5px; font-weight:700; color:#1f2937; }
+  .mini-body { font-size:11.2px; line-height:1.55; color:#4b5563; margin-top:6px; }
+  .sig-grid { display:grid; grid-template-columns:1.15fr 0.85fr; gap:20px; }
+  .exp-grid { display:grid; grid-template-columns:130px 1fr; gap:12px; margin-top:22px; }
+  .exp-title { font-size:12.5px; font-weight:700; color:#1a1a1a; line-height:1.25; }
+  .exp-date { font-size:11.5px; color:#777; margin-top:2px; }
+  .company { font-size:12.5px; font-weight:600; color:#1a1a1a; }
+  ul { list-style:disc; padding-left:14px; margin-top:6px; }
+  li { font-size:11.3px; line-height:1.55; color:#2f2f2f; margin-bottom:8px; }
+  li b { font-weight:700; }
+  footer.bar { height:8px; background:#3B9AE1; width:100%; flex-shrink:0; margin-top:auto; }
+  .skills-section h3 { font-size:12.5px; font-weight:700; color:#1a1a1a; margin-top:12px; }
+  .skills-section p { font-size:11.2px; line-height:1.5; color:#4a4a4a; margin-top:2px; }
+  .spacer { flex:1; }
+
+  @media print {
+    .pdf-download { display:none !important; }
+    body { background:white; padding:0; gap:0; }
+    .page { box-shadow:none; width:100%; min-height:100vh; height:100vh; page-break-after:always; break-after:page; }
+    .page:last-child { page-break-after:auto; break-after:auto; }
+    @page { size:A4; margin:0; }
+  }
+
+  .pdf-download {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 50;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px 10px 12px;
+    background: #fff;
+    color: #1f2937;
+    text-decoration: none;
+    border-radius: 999px;
+    box-shadow: 0 8px 28px rgba(15, 23, 42, 0.16);
+    border: 1px solid #d7e4f2;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    transition: transform .15s ease, box-shadow .15s ease;
+  }
+  .pdf-download:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 12px 32px rgba(15, 23, 42, 0.2);
+  }
+  .pdf-download svg { flex-shrink: 0; display: block; }
+  .pdf-download span { white-space: nowrap; }
+  @media (max-width: 640px) {
+    .pdf-download { top: 12px; right: 12px; padding: 10px; }
+    .pdf-download span { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<a class="pdf-download" href="Sandy_Chang.pdf" download="Sandy_Chang.pdf" aria-label="Download PDF resume">
+  <svg width="28" height="28" viewBox="0 0 32 32" aria-hidden="true">
+    <rect x="4" y="2" width="20" height="28" rx="3" fill="#E53935"/>
+    <path d="M18 2v7a2 2 0 0 0 2 2h7" fill="#FF8A80"/>
+    <path d="M18 2l9 9h-7a2 2 0 0 1-2-2V2z" fill="#FFCDD2"/>
+    <text x="14" y="22" text-anchor="middle" fill="#fff" font-size="8" font-weight="800" font-family="Inter, Helvetica, Arial, sans-serif">PDF</text>
+  </svg>
+  <span>Download PDF</span>
+</a>
+
+
+<!-- PAGE 1 -->
+<div class="page">
+<header>
+  <div class="header-left"><h1>Sandy Chang</h1><p>Senior UX Designer</p></div>
+  <div class="header-right"><div>San Jose, CA</div><div>408-345-5881</div><div>ToSandy@gmail.com</div><div>linkedin.com/in/tosandy</div><div>sandy-chang.netlify.app</div></div>
+</header>
+<main>
+  <section>
+    <h2>About me</h2><div class="underline"></div>
+    <p class="body">Enterprise UX designer with 10+ years turning complex technical systems into products people find easy to use, including digital twins of physical data center infrastructure. I lead design strategy across Equinix's Console, CRH, IAM and Solution Designer platforms, covering research, systems, interaction and visual design from first interview to launch. Recently focused on AIUX: evaluating complex spaces to surface interaction patterns, designing for ML capabilities/limitations (hallucination, confidence, grounding), and building human-AI collaboration workflows. I partner closely with product, engineering and architecture, and use AI-assisted prototyping (Claude Codex, Cursor, Gemini) to move from research to validated POCs faster.</p>
+  </section>
+  <div class="stats">
+    <div class="stat"><div class="stat-num">12+ → 1</div><div class="stat-label">tools unified</div></div>
+    <div class="stat"><div class="stat-num">3×</div><div class="stat-label">faster design-to-order</div></div>
+    <div class="stat"><div class="stat-num">40%</div><div class="stat-label">fewer nav errors</div></div>
+    <div class="stat"><div class="stat-num">5,000+</div><div class="stat-label">reviews enabled</div></div>
+  </div>
+  <div class="card">
+    <div><span class="card-label">AIUX Lab</span> <span style="font-size:10px;color:#7a8aa0;">—</span> <span class="card-label" style="opacity:0.8;">Human-AI Collaboration Experiments</span></div>
+    <div class="grid3">
+      <div><div class="mini-label">Motif</div><div class="mini-title">AIUX Repertoire</div><div class="mini-body">18 agent skills, 12 deck styles, 55 prompts. Evaluated complex spaces to surface patterns into transitionable pattern technology for AI agents.</div></div>
+      <div><div class="mini-label">Mantra Lounge</div><div class="mini-title">Designing for Model Limitations</div><div class="mini-body">30+ videos, 5k+ views. Built verification timeline for hallucination, confidence signals, human-as-director workflow with Suno + Claude + ffmpeg.</div></div>
+      <div><div class="mini-label">Data Center Prototype</div><div class="mini-title">Human-AI Workflow</div><div class="mini-body">Claude-accelerated prototype from weeks to days. Grounded in product catalog (power/cooling/SKU) to prevent hallucinations — e.g., only fiber tray connects to Express Exits. Designed confidence & provenance UX.</div></div>
+    </div>
+  </div>
+  <div class="card">
+    <div style="display:flex; gap:8px; align-items:center;"><span class="card-label">Signature Project</span></div>
+    <div class="sig-grid" style="margin-top:12px;">
+      <div>
+        <div style="font-size:13px; font-weight:700;">Solution Designer <span style="font-weight:400; color:#666;">Equinix data center digital twin</span></div>
+        <p class="body" style="font-size:11.5px; margin-top:8px; line-height:1.6;">Interviewed sales engineers, customer project managers and order managers, then unified 12+ tools into one SFDC-connected flow. <b>Designed for ML hallucinations in communication layer for Private Cage:</b> Claude overgeneralized that fiber/basket/copper trays all connect to Express Exits because they all support overlay. Reality: only fiber connects. Non-valid overlay = wrong cabinet = wrong quote. Grounded generation in product catalog as fixed source of truth with validation rules, and designed UX with provenance (why basket/copper disabled + spec link) and human-in-the-loop review.</p>
+        <div style="margin-top:10px; font-size:11px; color:#3B9AE1; font-weight:700;">3× faster design-to-order &nbsp;|&nbsp; 2× fewer order errors &nbsp;|&nbsp; 95% → 30% projects needing SE-CPM</div>
+      </div>
+      <div style="background:#F8FBFF; border:1px solid #DDEBFA; border-radius:8px; padding:12px;">
+        <div style="font-size:10px; font-weight:700; color:#5a6470; text-transform:uppercase;">Before → After</div>
+        <div style="font-size:11px; margin-top:8px; color:#333;">12+ disconnected tools<br/>↓<br/><b style="color:#3B9AE1;">SFDC → Solution Designer → Order</b><br/>Single grounded flow with validation</div>
+      </div>
+    </div>
+  </div>
+  <div class="spacer"></div>
+</main>
+<footer class="bar"></footer>
+</div>
+
+<!-- PAGE 2 -->
+<div class="page">
+<main>
+  <section style="padding-top:12px;">
+    <h2>Experience</h2><div class="underline"></div>
+    <div class="exp-grid">
+      <div><div class="exp-title">Senior UX Designer</div><div class="exp-date">2020 – Present</div></div>
+      <div>
+        <div class="company">Equinix</div>
+        <ul>
+          <li><b>Platform strategy:</b> Lead UX strategy across Equinix's customer platforms, Console, CRH, IAM and Support Center, including data center digital twins.</li>
+          <li><b>Solution Designer:</b> Led research and UX for the digital twin (12+ tools → 1 SFDC-connected flow, 3× faster, 2× fewer errors). Designed for ML hallucinations — e.g., Claude overgeneralized that fiber/basket/copper trays all connect to Express Exits; grounded generation in product catalog as source of truth (only fiber connects), with validation rules, provenance UX (why basket/copper disabled + spec link), and human-in-the-loop review to prevent non-deployable designs.</li>
+          <li><b>Customer Onboarding:</b> Redesigned the onboarding journey, cutting a core task from 5 clicks to 2.</li>
+          <li><b>Console navigation:</b> Restructured information architecture and validated it through usability testing, reducing navigation errors by 40%.</li>
+          <li><b>IAM and CRH:</b> Delivered high-fidelity designs that streamlined complex enterprise workflows and reduced user errors.</li>
+          <li><b>Ways of working:</b> Partner with product managers, engineers and architects from discovery through launch; plan and run usability testing; create wireframes, storyboards, prototypes; contribute to design system and pattern library.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="exp-grid">
+      <div><div class="exp-title">Lead UX Designer</div><div class="exp-date">2018 – 2020</div></div>
+      <div>
+        <div class="company">Palo Alto Networks</div>
+        <ul>
+          <li><b>Platform alignment:</b> Led UX for 12+ web properties serving 2M+ monthly visitors, including BEACON. Evaluated complex spaces to align patterns into a unified design system.</li>
+          <li><b>Cross-functional leadership:</b> Partnered with product, engineering, and executive stakeholders to ship consistent enterprise experiences.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="exp-grid">
+      <div><div class="exp-title">Senior UX Designer</div><div class="exp-date">2008 – 2018</div></div>
+      <div>
+        <div class="company">Cisco Systems</div>
+        <ul>
+          <li><b>InTouch Feedback:</b> Designed rating & feedback features enabling 5,000+ user reviews; informed product improvements through usability studies.</li>
+          <li><b>Recognition:</b> Received the Cisco Pioneer Award and Cisco Cosmo Award for collaboration and feedback platform work.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="exp-grid">
+      <div><div class="exp-title">Senior Web Designer</div><div class="exp-date">2006 – 2008</div></div>
+      <div>
+        <div class="company">HP</div>
+        <ul>
+          <li><b>Smart TV:</b> Designed the 10-foot UI for HP's Smart TV, optimized for viewing from across the room and navigating by remote.</li>
+          <li><b>Constraints:</b> Balanced visual quality with responsiveness on slow hardware, delivering within requirements and technical limits.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <div class="spacer"></div>
+</main>
+<footer class="bar"></footer>
+</div>
+
+<!-- PAGE 3 -->
+<div class="page">
+<main>
+  <section style="padding-top:12px;">
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:32px;">
+      <div class="skills-section">
+        <h2>Skills</h2><div class="underline"></div>
+        <h3>Design</h3><p>Enterprise UX, interaction design, design systems, visual design, data visualization, spatial/3D interaction</p>
+        <h3>Research</h3><p>Usability testing, stakeholder interviews, contextual inquiry, personas, journey mapping, affinity mapping</p>
+        <h3>Tools</h3><p>Figma, Webflow, HTML/CSS, Adobe Creative Suite, Lucid, Jira, Confluence</p>
+        <h3>AI</h3><p>ML limitations, hallucination handling, confidence calibration, human-AI workflows, AIUX repertoire, evaluating complex spaces, Claude Codex, Cursor, Gemini, Figma Make</p>
+        <h3>Languages</h3><p>English, Mandarin</p>
+      </div>
+      <div class="skills-section">
+        <h2>Education</h2><div class="underline"></div>
+        <div style="margin-top:8px;"><div style="font-size:12px; font-weight:700;">M.S., Computer Information Systems</div><div style="font-size:11.2px; color:#555;">Bellevue University</div></div>
+        <div style="margin-top:10px;"><div style="font-size:12px; font-weight:700;">M.A., Communication & Multimedia Design</div><div style="font-size:11.2px; color:#555;">Saginaw Valley State University</div></div>
+        <div style="margin-top:10px;"><div style="font-size:12px; font-weight:700;">Certified Google AI Leadership</div><div style="font-size:11.2px; color:#555;">Google</div></div>
+        <div style="margin-top:10px;"><div style="font-size:12px; font-weight:700;">Certified UX Designer</div><div style="font-size:11.2px; color:#555;">Nielsen Norman Group</div></div>
+        <div style="margin-top:10px;"><div style="font-size:12px; font-weight:700;">Design thinking coursework</div><div style="font-size:11.2px; color:#555;">Stanford d.school</div></div>
+        <div style="margin-top:24px;"><h2>Awards</h2><div class="underline"></div></div>
+        <div style="margin-top:8px;"><div style="font-size:12px; font-weight:700;">Equinix Hackathon, 1st Place</div><div style="font-size:11.2px; color:#555;">Unified Portal Shopping Experience</div></div>
+        <div style="margin-top:10px;"><div style="font-size:12px; font-weight:700;">Cisco Pioneer Award</div><div style="font-size:11.2px; color:#555;">Collaboration Learning Intelligence Platform</div></div>
+        <div style="margin-top:10px;"><div style="font-size:12px; font-weight:700;">Cisco Cosmo Award</div><div style="font-size:11.2px; color:#555;">Cisco InTouch Feedback</div></div>
+      </div>
+    </div>
+  </section>
+  <div class="spacer"></div>
+</main>
+<footer class="bar"></footer>
+</div>
+
+</body>
+</html>
